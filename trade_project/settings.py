@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third Party App
     'django_extensions',
+    'tailwind',
+    'django_browser_reload',
+    'theme',
     # Custom App
     'auth_app',
 
@@ -55,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'trade_project.urls'
@@ -62,7 +66,7 @@ ROOT_URLCONF = 'trade_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,3 +133,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Tailwind CSS Setup
+
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = os.getenv('INTERNAL_IPS').split(' ')
+NPM_BIN_PATH = r'C:\Program Files\nodejs\npm.cmd'
