@@ -77,3 +77,28 @@ class VerifyEmailForm(forms.Form):
         except:
             raise ValidationError("OTP Not Matched. Please Enter Correct OTP.")
         return super().is_valid()
+    
+
+class ForgotPasswordForm(forms.Form):
+    email = forms.EmailField(max_length=50, validators=[EmailValidator])
+
+    def is_valid(self):
+        email = self.data.get('email')
+        try:
+            user = get_object_or_404(User, username=email)
+        except:
+            raise ValidationError("Email Does not Exists")
+        return super().is_valid()
+    
+
+class ResetPasswordForm(forms.Form):
+    password = forms.CharField(max_length=16, validators=[MinLengthValidator(8), MaxLengthValidator(16)])
+    confirm_password = forms.CharField(max_length=16, validators=[MinLengthValidator(8), MaxLengthValidator(16)])
+
+    def is_valid(self):
+        password = self.data['password']
+        confirm_password = self.data['confirm_password']
+
+        if password != confirm_password:
+            raise ValidationError("Password didn't  Matched")
+        return super().is_valid()
