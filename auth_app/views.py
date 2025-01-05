@@ -13,7 +13,7 @@ def login_view(request, *args, **kwargs):
             if not form.cleaned_data.get('account_status'):
                 send_otp_mail(form.cleaned_data.get('email'))
                 return redirect('auth_app:verify-email', email=form.cleaned_data.get('email'))
-            return redirect('auth_app:register')
+            return redirect('shop_app:home')
 
     return render(request=request, template_name='auth_app/login-form.html', context={'form': form })
 

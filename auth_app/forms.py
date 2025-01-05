@@ -68,6 +68,11 @@ class VerifyEmailForm(forms.Form):
         try:
             otp = OTPStore.objects.get(email=email, otp=otp, is_verified=False)
             otp.is_verified = True
+            
+            user = User.objects.get(username=email)
+            user.is_active = True
+
+            user.save()
             otp.save()
         except:
             raise ValidationError("OTP Not Matched. Please Enter Correct OTP.")
