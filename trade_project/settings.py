@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'tailwind',
     'django_browser_reload',
     'theme',
+    'django_recaptcha',
     # Custom App
     'auth_app',
 
@@ -139,3 +140,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = os.getenv('INTERNAL_IPS').split(' ')
 NPM_BIN_PATH = r'C:\Program Files\nodejs\npm.cmd'
+
+# Django Captcha Configurations
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'shaileshcloud596@gmail.com'  # Replace with your email address
+EMAIL_HOST_PASSWORD = 'qsht aiic okuy shmr'  # Replace with your email password or app-specific password
+DEFAULT_FROM_EMAIL = 'shaileshcloud596@gmail.com'

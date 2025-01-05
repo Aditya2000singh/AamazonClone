@@ -1,0 +1,49 @@
+{% extends "base/index.html" %}
+{% block content %}
+
+<div class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Account Verification</h2>
+        <form method="POST" action="{% url 'auth_app:verify-email' email=email %}" class="space-y-6">
+            {% csrf_token %}
+            <!-- Email Field -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    value = {{ email }}
+                    class="mt-1 block w-full rounded-md  bg-slate-400 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+                    placeholder="Enter your email"
+                    required
+                    readonly
+                >
+            </div>
+
+            <!-- OTP Field -->
+            <div>
+                <label for="otp" class="block text-sm font-medium text-gray-700">OTP</label>
+                <input 
+                    type="text" 
+                    name="otp" 
+                    id="otp" 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+                    placeholder="Enter OTP (if received)"
+                >
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button 
+                    type="submit" 
+                    class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200"
+                >
+                    Verify Email
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

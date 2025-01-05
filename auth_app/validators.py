@@ -7,3 +7,12 @@ def is_email_present(email):
         get_object_or_404(User, username=email)
     except:
         raise ValidationError('Email Does Not Exists.')
+
+
+def is_account_active(email):
+    try:
+        user = get_object_or_404(User, username=email)
+        if not user.is_active:
+            raise ValidationError("Account is not active.")
+    except:
+        raise ValidationError('Email Does Not Exists.')
