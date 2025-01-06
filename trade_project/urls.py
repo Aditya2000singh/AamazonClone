@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth_app/', include('auth_app.urls')),
+    path('', include('auth_app.urls')),
     path('shop_app/', include('shop_app.urls')),
 
     path("__reload__/", include("django_browser_reload.urls")),

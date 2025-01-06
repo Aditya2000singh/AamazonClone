@@ -11,7 +11,7 @@ from auth_app.views import (
 app_name = 'auth_app'
 
 urlpatterns = [
-    path('login/', login_view, name='login'),
+    path('', login_view, name='login'),
     path('register/', register_view, name='register'),
     path('verify_email/<str:email>/', verify_email, name='verify-email'),
     path('forgot_password/', forgot_password_view, name='forgot-password'),
