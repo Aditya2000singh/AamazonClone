@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from auth_app.forms import (UserRegiserForm,
                             UserLoginForm, 
@@ -8,7 +9,7 @@ from auth_app.forms import (UserRegiserForm,
                             ForgotPasswordForm,
                             ResetPasswordForm)
 
-from auth_app.mail import send_otp_mail, send_password_reset_link_mail
+from auth_app.mail import send_otp_mail, send_password_reset_link_mail,succesful_register
 
 def login_view(request, *args, **kwargs):
     form = UserLoginForm()
@@ -36,6 +37,11 @@ def register_view(request, *args, **kwargs):
             user.set_password(cleaned_data.get('password'))
             user.is_active = False
             user.save()
+            #print(user.username)
+            #print(user.first_name)
+            succesful_register(user.username,user.first_name)
+            messages.success(request, "Succesfully Registered")
+
             return redirect('auth_app:login')
     return render(request=request, template_name='auth_app/register-form.html', context={'form': form})
 
@@ -72,3 +78,5 @@ def reset_password_view(request,uid, *args, **kwargs):
 
             return redirect('auth_app:login')
     return render(request=request, template_name='auth_app/reset-password.html', context={'form': form})
+
+

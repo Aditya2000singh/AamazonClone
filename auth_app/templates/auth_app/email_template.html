@@ -1,0 +1,33 @@
+{% extends "base/index.html" %}
+
+{% block content %}
+<div class="bg-gray-100 p-6 min-h-screen flex items-center justify-center">
+    <div class="max-w-md bg-white rounded-lg shadow-md overflow-hidden">
+        <!-- Header -->
+        <div class="bg-blue-600 p-4 text-center">
+            <img src="https://via.placeholder.com/150x50?text=Amazon" alt="Amazon Logo" class="mx-auto">
+        </div>
+        <!-- Body -->
+        <div class="p-6">
+            <h5 class="text-xl font-bold text-gray-800">Hello, {{ user_name }}!</h5>
+            <p class="text-gray-600 mt-4">
+                Use the OTP below to proceed:
+            </p>
+            <!-- OTP Box -->
+            <div class="bg-gray-100 border border-gray-300 rounded-lg mt-4 p-4 text-center">
+                <span class="text-2xl font-bold text-gray-800">{{ otp }}</span>
+            </div>
+            <p class="text-gray-600 mt-4">
+                Thank you for joining us. We're excited to have you on board!
+            </p>
+        </div>
+        <!-- Footer -->
+        <div class="bg-gray-50 p-4 text-center border-t">
+            <p class="text-gray-500 text-sm">
+                Regards,<br>
+                Team Amazon
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
